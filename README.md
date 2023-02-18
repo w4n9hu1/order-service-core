@@ -1,9 +1,21 @@
 # Order Service
 
-This project is a backend for an order service, built with .Net6.
+This is a web-based API project built in C# that uses Domain Driven Design (DDD) principles and several technologies such as xUnit, Dapper, AutoMapper, Refit, MySQL, and more. This project is designed to handle order management and processing.
+
+## Structure
+
+The project follows the DDD approach and has the following structure:
+
+WebAPI - contains controllers and API endpoints.
+Application - contains application services and DTOs.
+Domain - contains entities, domain services, and repositories.
+Infrastructure - contains data access and external services implementations.
 
 ## Tech Stack
 
-This project was built using the following technologies:
+The project uses several open-source libraries, including:
 
-- .Net6
+Dapper: a lightweight ORM for database access.
+AutoMapper: a tool for mapping between objects.
+Refit: a type-safe REST library for .NET.
+xUnit: a unit testing framework for .NET.
