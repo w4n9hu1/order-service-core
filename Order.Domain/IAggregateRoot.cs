@@ -1,7 +1,6 @@
 ﻿namespace Order.Domain
 {
-    public class Class1
+    public interface IAggregateRoot
     {
-
     }
 }
