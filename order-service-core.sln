@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Webapi", "order.webapi\Order.Webapi.csproj", "{C207EFD7-2500-4FA6-BB28-E7586604BA87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Webapi", "Order.Webapi\Order.Webapi.csproj", "{C207EFD7-2500-4FA6-BB28-E7586604BA87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Domain", "Order.Domain\Order.Domain.csproj", "{6A19C356-3288-4113-809E-B71EE7C4CEAD}"
 EndProject
