@@ -11,7 +11,7 @@ namespace Order.Webapi.Controllers
     [ApiController]
     public class QuoteController : ControllerBase
     {
-        private readonly IQuotesApi _quotesApi;
+            private readonly IQuotesApi _quotesApi;
 
         public QuoteController(IQuotesApi quotesApi)
         {
@@ -21,8 +21,7 @@ namespace Order.Webapi.Controllers
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var userinfo = await _quotesApi.GetQuote();
-            return new JsonResult(userinfo);
+            return new JsonResult(await _quotesApi.GetQuote());
         }
     }
 }
