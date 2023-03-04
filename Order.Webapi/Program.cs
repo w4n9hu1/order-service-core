@@ -1,6 +1,8 @@
+using Order.Application;
 using Order.Application.Mapper;
 using Order.Domain.Order;
 using Order.Infrastructure;
+using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,4 +36,6 @@ static void AddServices(IServiceCollection services)
 {
     services.AddAutoMapper(typeof(OrderProfile));
     services.AddScoped<IOrderRepository, OrderRepository>();
+
+    services.AddRefitClient<IQuotesApi>().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.quotable.io"));
 }

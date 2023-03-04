@@ -4,7 +4,7 @@
     {
         public int OrderId { get; set; }
 
-        public string OrderCode { get; set; }
+        public string OrderCode { get; set; } = string.Empty;
 
         public Weight Weight { get; set; }
 
