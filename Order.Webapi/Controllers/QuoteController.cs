@@ -11,7 +11,7 @@ namespace Order.Webapi.Controllers
     [ApiController]
     public class QuoteController : ControllerBase
     {
-            private readonly IQuotesApi _quotesApi;
+        private readonly IQuotesApi _quotesApi;
 
         public QuoteController(IQuotesApi quotesApi)
         {
