@@ -17,14 +17,19 @@ namespace Order.Application
 
         public async Task CreateAsync(CreateOrderRequest createOrderRequest)
         {
-            var order = _mapper.Map<Domain.Order.Order>(createOrderRequest);
+            var order = new Domain.Order.Order(createOrderRequest.OrderCode, _mapper.Map<List<Domain.Order.OrderItem>>(createOrderRequest.OrderItems))
+            {
+                Weight = createOrderRequest.Weight,
+                CreatedBy = createOrderRequest.CreatedBy,
+                CreatedTime = DateTimeOffset.Now
+            };
             await _orderRepository.SaveAsync(order);
         }
 
-        public async Task AddOrderItemAsync(int orderId, AddOrderItemRequest addOrderItemRequest)
+        public async Task AddOrderItemAsync(AddOrderItemRequest addOrderItemRequest)
         {
-            var order = await _orderRepository.GetAsync(orderId);
-            var orderItem = _mapper.Map<OrderItem>(addOrderItemRequest);
+            var order = await _orderRepository.GetAsync(addOrderItemRequest.OrderId);
+            var orderItem = _mapper.Map<Domain.Order.OrderItem>(addOrderItemRequest.OrderItem);
             order.AddOrderItem(orderItem);
 
             await _orderRepository.SaveAsync(order);

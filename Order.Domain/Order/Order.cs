@@ -24,6 +24,11 @@
                 throw new OrderException("OrderItems should have orderItems!");
             }
 
+            if (orderItems.Any(i => i.Amount == 0))
+            {
+                throw new OrderException("Commodity's amount should not be 0!");
+            }
+
             OrderCode = orderCode;
             OrderItems = orderItems;
         }
@@ -32,7 +37,13 @@
 
         public List<OrderItem> OrderItems { get; set; }
 
-        public int Amount { get; set; }
+        public int Amount
+        {
+            get
+            {
+                return OrderItems.Sum(i => i.Amount);
+            }
+        }
 
         public int CreatedBy { get; set; }
 

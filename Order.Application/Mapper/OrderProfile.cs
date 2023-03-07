@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Order.Application.Contracts.Dto;
 
 namespace Order.Application.Mapper
 {
@@ -7,8 +6,7 @@ namespace Order.Application.Mapper
     {
         public OrderProfile()
         {
-            CreateMap<CreateOrderRequest, Domain.Order.Order>();
-            CreateMap<AddOrderItemRequest, Domain.Order.OrderItem>();
+            CreateMap<Contracts.Dto.OrderItem, Domain.Order.OrderItem>();
         }
     }
 }
