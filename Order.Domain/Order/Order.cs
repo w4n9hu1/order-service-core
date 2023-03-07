@@ -10,11 +10,27 @@
     {
         public int OrderId { get; set; }
 
-        public string OrderCode { get; set; } = string.Empty;
+        public string OrderCode { get; set; }
+
+        public Order(string orderCode, List<OrderItem> orderItems)
+        {
+            if (string.IsNullOrEmpty(orderCode))
+            {
+                throw new OrderException("OrderCode should have value!");
+            }
+
+            if (orderItems == null || !orderItems.Any())
+            {
+                throw new OrderException("OrderItems should have orderItems!");
+            }
+
+            OrderCode = orderCode;
+            OrderItems = orderItems;
+        }
 
         public Weight Weight { get; set; }
 
-        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public List<OrderItem> OrderItems { get; set; }
 
         public int Amount { get; set; }
 
@@ -24,6 +40,10 @@
 
         public void AddOrderItem(OrderItem orderItem)
         {
+            if (orderItem.Amount == 0)
+            {
+                throw new OrderException("Commodity's amount should not be 0!");
+            }
             OrderItems.Add(orderItem);
         }
     }
