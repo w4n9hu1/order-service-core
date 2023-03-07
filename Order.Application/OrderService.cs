@@ -17,11 +17,7 @@ namespace Order.Application
 
         public async Task CreateAsync(CreateOrderRequest createOrderRequest)
         {
-            var order = new Domain.Order.Order(createOrderRequest.OrderCode, _mapper.Map<List<Domain.Order.OrderItem>>(createOrderRequest.OrderItems))
-            {
-                Weight = createOrderRequest.Weight,
-                CreatedBy = createOrderRequest.CreatedBy,
-            };
+            var order = _mapper.Map<Domain.Order.Order>(createOrderRequest);
             await _orderRepository.SaveAsync(order);
         }
 
