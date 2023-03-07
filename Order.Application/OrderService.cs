@@ -24,9 +24,12 @@ namespace Order.Application
         public async Task AddOrderItemAsync(AddOrderItemRequest addOrderItemRequest)
         {
             var order = await _orderRepository.GetAsync(addOrderItemRequest.OrderId);
-            var orderItem = new Domain.Order.OrderItem(addOrderItemRequest.OrderItem.CommodityId, addOrderItemRequest.OrderItem.CommodityName, addOrderItemRequest.OrderItem.Amount);
+            if (order == null)
+            {
+                throw new Exception($"can not find order by id {addOrderItemRequest.OrderId}");
+            }
+            var orderItem = _mapper.Map<Domain.Order.OrderItem>(addOrderItemRequest.OrderItem);
             order.AddOrderItem(orderItem);
-
             await _orderRepository.UpdateAsync(order);
         }
     }

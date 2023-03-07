@@ -23,9 +23,16 @@ namespace Order.Webapi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CrwateAsync(CreateOrderRequest createOrderRequest)
+        public async Task<ActionResult> CreateAsync(CreateOrderRequest createOrderRequest)
         {
             await _orderService.CreateAsync(createOrderRequest);
+            return Ok();
+        }
+
+        [HttpPost("AddOrderItem")]
+        public async Task<ActionResult> AddOrderItemAsync(AddOrderItemRequest addOrderItemRequest)
+        {
+            await _orderService.AddOrderItemAsync(addOrderItemRequest);
             return Ok();
         }
     }
