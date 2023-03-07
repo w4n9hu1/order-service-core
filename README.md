@@ -2,6 +2,8 @@
 
 This is a web-based API project built in C# that uses Domain Driven Design (DDD) principles and several technologies such as xUnit, Dapper, AutoMapper, Refit, MySQL, and more. This project is designed to handle order management and processing.
 
+![architecture](./design/architecture.png)
+
 ## Structure
 
 The project follows the DDD approach and has the following structure:
