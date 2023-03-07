@@ -1,4 +1,5 @@
 ﻿using Order.Domain.Order;
+using Order.Domain.Shared;
 
 namespace Order.Infrastructure
 {
@@ -6,10 +7,10 @@ namespace Order.Infrastructure
     {
         public Task<Domain.Order.Order> GetAsync(int orderId)
         {
-            throw new NotImplementedException();
+            throw new EntityNotFoundException(nameof(orderId));
         }
 
-        public Task SaveAsync(Domain.Order.Order order)
+        public Task InsertAsync(Domain.Order.Order order)
         {
             throw new NotImplementedException();
         }
