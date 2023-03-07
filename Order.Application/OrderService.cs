@@ -18,7 +18,16 @@ namespace Order.Application
         public async Task CreateAsync(CreateOrderRequest createOrderRequest)
         {
             var order = _mapper.Map<Domain.Order.Order>(createOrderRequest);
-            await _orderRepository.SaveOrderAsync(order);
-        } 
+            await _orderRepository.SaveAsync(order);
+        }
+
+        public async Task AddOrderItemAsync(int orderId, AddOrderItemRequest addOrderItemRequest)
+        {
+            var order = await _orderRepository.GetAsync(orderId);
+            var orderItem = _mapper.Map<OrderItem>(addOrderItemRequest);
+            order.AddOrderItem(orderItem);
+
+            await _orderRepository.SaveAsync(order);
+        }
     }
 }

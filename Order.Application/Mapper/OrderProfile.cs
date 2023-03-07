@@ -8,6 +8,7 @@ namespace Order.Application.Mapper
         public OrderProfile()
         {
             CreateMap<CreateOrderRequest, Domain.Order.Order>();
+            CreateMap<AddOrderItemRequest, Domain.Order.OrderItem>();
         }
     }
 }

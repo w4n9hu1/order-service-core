@@ -4,7 +4,12 @@ namespace Order.Infrastructure
 {
     public class OrderRepository : IOrderRepository
     {
-        public Task SaveOrderAsync(Domain.Order.Order order)
+        public Task<Domain.Order.Order> GetAsync(int orderId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveAsync(Domain.Order.Order order)
         {
             throw new NotImplementedException();
         }

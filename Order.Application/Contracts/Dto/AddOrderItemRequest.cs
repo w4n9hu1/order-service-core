@@ -1,10 +1,7 @@
-﻿namespace Order.Domain.Order
+﻿namespace Order.Application.Contracts.Dto
 {
-    /** Entity.
-     */
-    public class OrderItem
+    public class AddOrderItemRequest
     {
-        public int OrderItemId { get; set; }
         public int CommodityId { get; set; }
         public string CommodityName { get; set; } = string.Empty;
         public int Amount { get; set; }
