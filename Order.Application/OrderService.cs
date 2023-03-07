@@ -21,7 +21,6 @@ namespace Order.Application
             {
                 Weight = createOrderRequest.Weight,
                 CreatedBy = createOrderRequest.CreatedBy,
-                CreatedTime = DateTimeOffset.Now
             };
             await _orderRepository.SaveAsync(order);
         }
@@ -29,10 +28,10 @@ namespace Order.Application
         public async Task AddOrderItemAsync(AddOrderItemRequest addOrderItemRequest)
         {
             var order = await _orderRepository.GetAsync(addOrderItemRequest.OrderId);
-            var orderItem = _mapper.Map<Domain.Order.OrderItem>(addOrderItemRequest.OrderItem);
+            var orderItem = new Domain.Order.OrderItem(addOrderItemRequest.OrderItem.CommodityId, addOrderItemRequest.OrderItem.CommodityName, addOrderItemRequest.OrderItem.Amount);
             order.AddOrderItem(orderItem);
 
-            await _orderRepository.SaveAsync(order);
+            await _orderRepository.UpdateAsync(order);
         }
     }
 }

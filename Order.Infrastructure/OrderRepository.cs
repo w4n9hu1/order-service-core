@@ -13,5 +13,10 @@ namespace Order.Infrastructure
         {
             throw new NotImplementedException();
         }
+
+        public Task UpdateAsync(Domain.Order.Order order)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

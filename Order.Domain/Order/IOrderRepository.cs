@@ -11,5 +11,6 @@
     {
         Task<Order> GetAsync(int orderId);
         Task SaveAsync(Order order);
+        Task UpdateAsync(Order order);
     }
 }
