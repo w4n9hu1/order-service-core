@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Order.Application.DTO;
-using Order.Domain.Order;
+﻿using Microsoft.AspNetCore.Mvc;
+using Order.Application;
+using Order.Application.Contracts.Dto;
 
 namespace Order.Webapi.Controllers
 {
@@ -9,14 +8,11 @@ namespace Order.Webapi.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IOrderRepository _orderRepository;
-        private readonly IMapper _mapper;
+        private readonly OrderService _orderService;
 
-        public OrderController(IOrderRepository orderRepository,
-            IMapper mapper)
+        public OrderController(OrderService orderService)
         {
-            _orderRepository = orderRepository;
-            _mapper = mapper;
+            _orderService = orderService;
         }
 
         [HttpGet]
@@ -27,10 +23,16 @@ namespace Order.Webapi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAsync(CreateOrderRequest createOrderRequest)
+        public async Task<ActionResult> CreateAsync(CreateOrderRequest createOrderRequest)
         {
-            var order = _mapper.Map<Domain.Order.Order>(createOrderRequest);
-            await _orderRepository.SaveOrderAsync(order);
+            await _orderService.CreateAsync(createOrderRequest);
+            return Ok();
+        }
+
+        [HttpPost("AddOrderItem")]
+        public async Task<ActionResult> AddOrderItemAsync(AddOrderItemRequest addOrderItemRequest)
+        {
+            await _orderService.AddOrderItemAsync(addOrderItemRequest);
             return Ok();
         }
     }
