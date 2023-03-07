@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Order.Application.DTO;
+using Order.Application.Contracts.Dto;
 
 namespace Order.Application.Mapper
 {

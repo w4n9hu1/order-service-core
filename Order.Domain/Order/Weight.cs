@@ -1,4 +1,6 @@
-﻿namespace Order.Domain.Order
+﻿using Order.Domain.Shared;
+
+namespace Order.Domain.Order
 {
     public struct Weight
     {

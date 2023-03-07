@@ -37,5 +37,7 @@ static void AddServices(IServiceCollection services)
     services.AddAutoMapper(typeof(OrderProfile));
     services.AddScoped<IOrderRepository, OrderRepository>();
 
+    services.AddScoped<OrderService>();
+
     services.AddRefitClient<IQuotesApi>().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.quotable.io"));
 }

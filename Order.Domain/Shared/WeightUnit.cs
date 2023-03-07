@@ -1,4 +1,4 @@
-﻿namespace Order.Domain.Order
+﻿namespace Order.Domain.Shared
 {
     public enum WeightUnit
     {

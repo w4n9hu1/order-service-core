@@ -1,5 +1,4 @@
-﻿using System;
-using Order.Application.DTO;
+﻿using Order.Application.Contracts.Dto;
 using Refit;
 
 namespace Order.Application

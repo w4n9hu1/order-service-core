@@ -1,4 +1,4 @@
-﻿namespace Order.Application.DTO
+﻿namespace Order.Application.Contracts.Dto
 {
     public class Quote
     {
