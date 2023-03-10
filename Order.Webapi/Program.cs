@@ -2,11 +2,12 @@ using Order.Application;
 using Order.Application.Mapper;
 using Order.Domain.Order;
 using Order.Infrastructure;
+using Order.Webapi.Middlewares;
 using Serilog;
 using Serilog.Events;
 
 Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Warning()
+    .MinimumLevel.Debug()
     .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
     .WriteTo.File("logs\\log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
@@ -23,6 +24,7 @@ builder.Services.AddSwaggerGen();
 AddServices(builder.Services);
 
 var app = builder.Build();
+
 app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
@@ -35,6 +37,8 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseAuditLog();
 
 app.Run();
 
