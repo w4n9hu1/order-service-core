@@ -20,8 +20,6 @@ namespace Order.Webapi.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
-            _logger.LogInformation("GetAsync");
-            _logger.LogWarning("warn GetAsync");
             await Task.Delay(1000);
             return Ok();
         }
@@ -29,6 +27,7 @@ namespace Order.Webapi.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateAsync(CreateOrderRequest createOrderRequest)
         {
+            _logger.LogInformation("Create {@createOrderRequest}", createOrderRequest);
             await _orderService.CreateAsync(createOrderRequest);
             return Ok();
         }

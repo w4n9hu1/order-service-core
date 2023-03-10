@@ -1,11 +1,18 @@
-using Microsoft.AspNetCore.HttpLogging;
 using Order.Application;
 using Order.Application.Mapper;
 using Order.Domain.Order;
 using Order.Infrastructure;
+using Serilog;
+using Serilog.Events;
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Warning()
+    .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+    .WriteTo.File("logs\\log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Host.UseSerilog();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -16,8 +23,7 @@ builder.Services.AddSwaggerGen();
 AddServices(builder.Services);
 
 var app = builder.Build();
-
-app.UseHttpLogging();
+app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -34,13 +40,6 @@ app.Run();
 
 static void AddServices(IServiceCollection services)
 {
-    services.AddHttpLogging(logging =>
-    {
-        logging.LoggingFields = HttpLoggingFields.RequestBody | HttpLoggingFields.RequestPath | HttpLoggingFields.ResponseBody;
-        logging.RequestBodyLogLimit = 4096;
-        logging.ResponseBodyLogLimit = 4096;
-    });
-
     services.AddAutoMapper(typeof(OrderProfile));
     services.AddScoped<IOrderRepository, OrderRepository>();
 
