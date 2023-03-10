@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpLogging;
 using Order.Application;
 using Order.Application.Mapper;
 using Order.Domain.Order;
@@ -16,14 +17,14 @@ AddServices(builder.Services);
 
 var app = builder.Build();
 
+app.UseHttpLogging();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
@@ -33,6 +34,13 @@ app.Run();
 
 static void AddServices(IServiceCollection services)
 {
+    services.AddHttpLogging(logging =>
+    {
+        logging.LoggingFields = HttpLoggingFields.RequestBody | HttpLoggingFields.RequestPath | HttpLoggingFields.ResponseBody;
+        logging.RequestBodyLogLimit = 4096;
+        logging.ResponseBodyLogLimit = 4096;
+    });
+
     services.AddAutoMapper(typeof(OrderProfile));
     services.AddScoped<IOrderRepository, OrderRepository>();
 

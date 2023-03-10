@@ -9,15 +9,19 @@ namespace Order.Webapi.Controllers
     public class OrderController : ControllerBase
     {
         private readonly OrderService _orderService;
+        private readonly ILogger<OrderController> _logger;
 
-        public OrderController(OrderService orderService)
+        public OrderController(OrderService orderService, ILogger<OrderController> logger)
         {
             _orderService = orderService;
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
+            _logger.LogInformation("GetAsync");
+            _logger.LogWarning("warn GetAsync");
             await Task.Delay(1000);
             return Ok();
         }
