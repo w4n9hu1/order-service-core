@@ -4,6 +4,7 @@ using Order.Domain.Order;
 namespace Order.Application.Contracts.Dto
 {
     /**
+     * Input Dto
      * A DTO is a simple object that is used to transfer state (data) between the Application and Presentation Layers.
        So, Application Service methods gets and returns DTOs.
      */
@@ -13,6 +14,7 @@ namespace Order.Application.Contracts.Dto
         [StringLength(20)]
         public string OrderCode { get; set; } = string.Empty;
 
+        [Required]
         public Weight Weight { get; set; }
 
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();

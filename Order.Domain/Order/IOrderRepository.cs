@@ -10,7 +10,9 @@
     public interface IOrderRepository
     {
         Task<Order> GetAsync(int orderId);
-        Task InsertAsync(Order order);
+        Task<Order> InsertAsync(Order order);
         Task UpdateAsync(Order order);
+
+        Task<bool> AnyAsync(Func<Order, bool> value);
     }
 }

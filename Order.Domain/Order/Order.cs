@@ -12,25 +12,19 @@
 
         public string OrderCode { get; set; }
 
-        public Order(string orderCode, List<OrderItem> orderItems)
+        internal Order(string orderCode)
         {
             if (string.IsNullOrEmpty(orderCode))
             {
                 throw new OrderException("OrderCode should have value!");
             }
 
-            if (orderItems == null || !orderItems.Any())
-            {
-                throw new OrderException("OrderItems should have orderItems!");
-            }
-
             OrderCode = orderCode;
-            OrderItems = orderItems;
         }
 
         public Weight Weight { get; set; }
 
-        public List<OrderItem> OrderItems { get; set; }
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
         public int TotalAmount
         {

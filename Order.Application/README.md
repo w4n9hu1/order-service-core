@@ -7,6 +7,11 @@ Application layer that implements the use cases of the application based on the 
 
 A thin project that contains the application service interfaces and the DTOs used by these interfaces. This project can be shared by the client applications (including the UI).
 
+### Object To Object Mapping
+
+- Use auto object mapping only for Entity to output DTO mappings.
+- Do not use auto object mapping for input DTO to Entity mappings.
+
 ## Application Layer Building Blocks
 
 ### Application Service
