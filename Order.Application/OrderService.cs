@@ -4,6 +4,11 @@ using Order.Domain.Order;
 
 namespace Order.Application
 {
+    /**
+     * An Application Service is a stateless service that implements use cases of the application.
+       An application service typically gets and returns DTOs. It is used by the Presentation Layer.
+       It uses and coordinates the domain objects (entities, repositories, etc.) to implement the use cases.
+     */
     public class OrderService
     {
         private readonly IOrderRepository _orderRepository;
@@ -15,7 +20,7 @@ namespace Order.Application
             _mapper = mapper;
         }
 
-        public async Task CreateAsync(CreateOrderRequest createOrderRequest)
+        public async Task CreateAsync(OrderCreationDto createOrderRequest)
         {
             var order = _mapper.Map<Domain.Order.Order>(createOrderRequest);
             await _orderRepository.InsertAsync(order);
