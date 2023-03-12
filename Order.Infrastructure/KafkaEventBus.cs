@@ -4,9 +4,9 @@ namespace Order.Infrastructure
 {
     public class KafkaEventBus : IDistributedEventBus
     {
-        public Task PublishAsync<T>(T message)
+        public async Task PublishAsync<T>(T message)
         {
-            throw new NotImplementedException();
+            await Task.Delay(1000);
         }
     }
 }

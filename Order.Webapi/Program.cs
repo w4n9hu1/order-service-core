@@ -12,9 +12,10 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
+// Add services to the container.
 
 builder.Services.AddControllers();
-
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -24,6 +25,7 @@ var app = builder.Build();
 
 app.UseSerilogRequestLogging();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -40,10 +42,12 @@ app.Run();
 
 static void AddServices(IServiceCollection services)
 {
+    services.AddMemoryCache();
     services.AddAutoMapper(typeof(OrderProfile));
-    services.AddScoped<IOrderRepository, OrderRepository>();
-    services.AddScoped<IDistributedEventBus, KafkaEventBus>();
+    services.AddScoped<IOrderRepository, CacheOrderRepository>();
 
     services.AddScoped<OrderService>();
     services.AddScoped<OrderManager>();
+
+    services.AddScoped<IDistributedEventBus, KafkaEventBus>();
 }
