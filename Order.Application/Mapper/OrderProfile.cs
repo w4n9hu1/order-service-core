@@ -4,10 +4,15 @@ namespace Order.Application.Mapper
 {
     public class OrderProfile : Profile
     {
+        /**
+         * Object to Object Mapping
+         */
         public OrderProfile()
         {
-            CreateMap<Contracts.Dto.OrderItem, Domain.Order.OrderItem>();
-            CreateMap<Contracts.Dto.CreateOrderRequest, Domain.Order.Order>();
+            CreateMap<Domain.Order.Order, Contracts.Dto.OrderCreationDto>();
+            CreateMap<Domain.Order.OrderItem, Domain.Order.OrderItem>();
+
+            CreateMap<Domain.Order.Order, Contracts.Eto.OrderChangedEto>();
         }
     }
 }

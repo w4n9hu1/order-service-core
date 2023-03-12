@@ -62,3 +62,6 @@ business objects.
 A Domain Event is a way of informing
 other services in a loosely coupled manner, when a
 domain specific event occurs.
+
+- Local Event Bus is suitable for in-process messaging.
+- Distributed Event Bus is suitable for inter-process messaging, like microservices publishing and subscribing to distributed events.

@@ -1,22 +1,34 @@
 # Order Service
 
-This is a web-based API project built in C# that uses Domain Driven Design (DDD) principles and several technologies such as xUnit, Dapper, AutoMapper, Refit, MySQL, and more. This project is designed to handle order management and processing.
+This is a sample ASP.NET Core API project that follows Domain-Driven Design (DDD) principles.
+ 
+It aims to provide practical experience and insight into implementing DDD concepts and techniques in a backend application. The project demonstrates how DDD can be effectively applied in a real-world scenario.
 
 ## Architecture
 
 ![architecture](./design/architecture.png)
 
-The project follows the DDD approach and has the following structure:
+Layering of this solution:
 
 - WebAPI - contains controllers and API endpoints.
-- Application - contains application services and DTOs.
-- Domain - contains entities, domain services, and repositories.
+- [Application](./Order.Application/README.md) - contains application services and DTOs.
+- [Domain](./Order.Domain//README.md) - contains entities, domain services, and repositories.
 - Infrastructure - contains data access and external services implementations.
 
 ## Tech Stack
 
-The project uses several open-source libraries, including:
+This project is planning to utilize the following technologies or third-party libraries:
 
-- xUnit: a unit testing framework for .NET.
-- AutoMapper: a tool for mapping between objects.
-- Serilog：a diagnostic logging library for .NET applications. 
+- [x] DDD
+- [x] AutoMapper
+- [x] Serilog
+- [ ] xUnit
+- [ ] Refit
+- [ ] Kafka
+- [ ] Mysql
+- [ ] Dapper
+- [ ] MongoDB
+- [ ] ElasticSearch
+- [ ] Docker
+- [ ] Azure
+- [ ] CI/CD

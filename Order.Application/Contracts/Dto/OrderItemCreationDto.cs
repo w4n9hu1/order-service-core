@@ -1,6 +1,6 @@
 ﻿namespace Order.Application.Contracts.Dto
 {
-    public class AddOrderItemRequest
+    public class OrderItemCreationDto
     {
         public int OrderId { get; set; }
         public int CreatedBy { get; set; }
