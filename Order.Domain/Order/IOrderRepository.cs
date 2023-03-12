@@ -12,7 +12,6 @@
         Task<Order> GetAsync(int orderId);
         Task<Order> InsertAsync(Order order);
         Task UpdateAsync(Order order);
-
-        Task<bool> AnyAsync(Func<Order, bool> value);
+        Task<bool> AnyAsync(string orderCode);
     }
 }

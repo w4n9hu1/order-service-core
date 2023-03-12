@@ -20,7 +20,7 @@ namespace Order.Infrastructure
             throw new NotImplementedException();
         }
 
-        public async Task<bool> AnyAsync(Func<Domain.Order.Order, bool> value)
+        public async Task<bool> AnyAsync(string orderCode)
         {
             throw new NotImplementedException();
         }

@@ -16,7 +16,7 @@
         public async Task<Order> CreateAsync(string orderCode)
         {
             //  core business rule: duplicate orderCode check
-            if (await _orderRepository.AnyAsync(i => i.OrderCode == orderCode))
+            if (await _orderRepository.AnyAsync(orderCode))
             {
                 throw new OrderException("This orderCode Exists!");
             }
