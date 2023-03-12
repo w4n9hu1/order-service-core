@@ -4,11 +4,9 @@ using Order.Domain.Order;
 using Order.Infrastructure;
 using Order.Webapi.Middlewares;
 using Serilog;
-using Serilog.Events;
 
 Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Debug()
-    .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+    .WriteTo.Console()
     .WriteTo.File("logs\\log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
