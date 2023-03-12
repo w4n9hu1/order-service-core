@@ -9,10 +9,12 @@ namespace Order.Webapi.Controllers
     public class OrderController : ControllerBase
     {
         private readonly OrderService _orderService;
+        private readonly ILogger<OrderController> _logger;
 
-        public OrderController(OrderService orderService)
+        public OrderController(OrderService orderService, ILogger<OrderController> logger)
         {
             _orderService = orderService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -25,6 +27,7 @@ namespace Order.Webapi.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateAsync(CreateOrderRequest createOrderRequest)
         {
+            _logger.LogInformation("Create {@createOrderRequest}", createOrderRequest);
             await _orderService.CreateAsync(createOrderRequest);
             return Ok();
         }

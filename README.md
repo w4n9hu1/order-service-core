@@ -19,3 +19,4 @@ The project uses several open-source libraries, including:
 
 - xUnit: a unit testing framework for .NET.
 - AutoMapper: a tool for mapping between objects.
+- Serilog：a diagnostic logging library for .NET applications. 

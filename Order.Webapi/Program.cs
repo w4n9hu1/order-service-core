@@ -2,9 +2,16 @@ using Order.Application;
 using Order.Application.Mapper;
 using Order.Domain.Order;
 using Order.Infrastructure;
+using Order.Webapi.Middlewares;
+using Serilog;
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs\\log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Host.UseSerilog();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -16,6 +23,8 @@ AddServices(builder.Services);
 
 var app = builder.Build();
 
+app.UseSerilogRequestLogging();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -23,11 +32,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseAuditLog();
 
 app.Run();
 
