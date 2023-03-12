@@ -9,8 +9,8 @@ namespace Order.Application.Mapper
          */
         public OrderProfile()
         {
-            CreateMap<Domain.Order.Order, Contracts.Dto.OrderCreationDto>();
-            CreateMap<Domain.Order.OrderItem, Domain.Order.OrderItem>();
+            CreateMap<Domain.Order.Order, Contracts.Dto.OrderDto>();
+            CreateMap<Domain.Order.OrderItem, Contracts.Dto.OrderItem>();
 
             CreateMap<Domain.Order.Order, Contracts.Eto.OrderChangedEto>();
         }

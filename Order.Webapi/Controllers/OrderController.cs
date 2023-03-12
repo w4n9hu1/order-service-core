@@ -24,19 +24,26 @@ namespace Order.Webapi.Controllers
             return new JsonResult(order);
         }
 
+        [HttpGet("All")]
+        public async Task<ActionResult> GetAllAsync()
+        {
+            var orders = await _orderService.GetAllAsync();
+            return new JsonResult(orders);
+        }
+
         [HttpPost]
         public async Task<ActionResult> CreateAsync(OrderCreationDto orderCreationDto)
         {
             _logger.LogInformation("Create {@orderCreationDto}", orderCreationDto);
-            await _orderService.CreateAsync(orderCreationDto);
-            return Ok();
+            var order = await _orderService.CreateAsync(orderCreationDto);
+            return Ok(order);
         }
 
         [HttpPost("AddOrderItem")]
         public async Task<ActionResult> AddOrderItemAsync(OrderItemCreationDto orderItemCreationDto)
         {
-            await _orderService.AddOrderItemAsync(orderItemCreationDto);
-            return Ok();
+            var order = await _orderService.AddOrderItemAsync(orderItemCreationDto);
+            return Ok(order);
         }
     }
 }

@@ -25,10 +25,16 @@ namespace Order.Application
             this.distributedEventBus = distributedEventBus;
         }
 
-        public async Task<OrderDto> GetAsync(int orderId)
+        public async Task<OrderDto?> GetAsync(int orderId)
         {
             var order = await _orderRepository.GetAsync(orderId);
             return _mapper.Map<OrderDto>(order);
+        }
+
+        public async Task<IEnumerable<OrderDto>> GetAllAsync()
+        {
+            var orders = await _orderRepository.GetAllAsync();
+            return _mapper.Map<List<OrderDto>>(orders);
         }
 
         public async Task<OrderDto> CreateAsync(OrderCreationDto orderCreationDto)
